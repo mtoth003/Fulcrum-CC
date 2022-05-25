@@ -27,6 +27,7 @@ function EstimateModal({ show, hide }) {
     { description: "", cost: "" },
   ]);
 
+  console.log(materialInputs);
   const [laborInputs, setLaborInputs] = useState([
     { description: "", cost: "" },
   ]);
@@ -64,7 +65,6 @@ function EstimateModal({ show, hide }) {
         <Modal.Title className="ms-3 mt-2">Material Cost</Modal.Title>
         <Modal.Body>
           {materialInputs.map((input, index) => {
-            console.log(input);
             return (
               <div key={index}>
                 <InputGroup className="mb-3">

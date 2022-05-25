@@ -23,15 +23,7 @@ export const EstimateProvider = ({ children }) => {
 
   const [laborCosts, setLaborCosts] = useState(initialLaborCost);
   const [materialCosts, setMaterialCosts] = useState(initialMaterialCost);
-
-  // const [materiaCost, setMaterialCost] = useState({
-  //   description: "",
-  //   cost: "",
-  // });
-  // const [laborCost, setLaborCost] = useState({
-  //   description: "",
-  //   cost: ""
-  // })
+  const [showEstimateModal, setShowEstimateModal] = useState(false);
 
   function addLaborCost({ description, cost }) {
     setLaborCosts((prevLaborCosts) => {
@@ -51,11 +43,13 @@ export const EstimateProvider = ({ children }) => {
     });
   }
 
-  function delteMaterialCost({ id }) {
+  function deleteMaterialCost({ id }) {
     setMaterialCosts((prevMaterialCosts) => {
       return prevMaterialCosts.filter((materialCost) => materialCost.id !== id);
     });
   }
+
+  const hideShowEstimateModal = () => setShowEstimateModal(false);
 
   return (
     <EstimateContext.Provider
@@ -65,7 +59,10 @@ export const EstimateProvider = ({ children }) => {
         addLaborCost,
         addMaterialCost,
         deleteLaborCost,
-        delteMaterialCost,
+        deleteMaterialCost,
+        setShowEstimateModal,
+        showEstimateModal,
+        hideShowEstimateModal,
       }}
     >
       {children}

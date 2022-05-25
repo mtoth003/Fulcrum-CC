@@ -1,13 +1,12 @@
-import { useState } from "react";
 import { Card, Stack, Button } from "react-bootstrap";
-import { currencyFormatter } from "../utils";
+import { currencyFormatter } from "../currency";
 import { useEstimate } from "../contexts/EstimateContext";
 
 function MaterialCostCard() {
-  const { materialCosts } = useEstimate();
+  const { materialCosts, deleteMaterialCost } = useEstimate();
 
   return (
-    <Card>
+    <Card className="mb-1">
       <Card.Header className="text-center">Material Costs</Card.Header>
       <Card.Body>
         <Stack direction="vertical" gap={3}>
@@ -17,14 +16,19 @@ function MaterialCostCard() {
               <div className="fs-5">
                 {currencyFormatter.format(materialCost.cost)}
               </div>
-              <Button variant="outline-danger">&times;</Button>
+              <Button
+                variant="outline-danger"
+                onClick={() => deleteMaterialCost(materialCost)}
+              >
+                &times;
+              </Button>
             </Stack>
           ))}
         </Stack>
       </Card.Body>
       <Card.Footer className="d-flex justify-content-between">
-        <div>Material Cost:</div>
-        <div>
+        <div className="fs-5">Material Cost:</div>
+        <div className="fs-5">
           {currencyFormatter.format(
             materialCosts.reduce((total, materialCost) => {
               return (total += materialCost.cost);

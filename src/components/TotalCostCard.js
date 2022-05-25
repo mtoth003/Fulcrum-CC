@@ -1,7 +1,7 @@
 import React from "react";
 import { Card } from "react-bootstrap";
 import { useEstimate } from "../contexts/EstimateContext";
-import { currencyFormatter } from "../utils";
+import { currencyFormatter } from "../currency";
 
 function TotalCostCard() {
   const { laborCosts, materialCosts } = useEstimate();
@@ -11,10 +11,10 @@ function TotalCostCard() {
 
   return (
     <>
-      <Card>
+      <Card border="dark">
         <Card.Footer className="d-flex justify-content-between">
-          <div>Total Cost:</div>
-          <div>{currencyFormatter.format(totalCost)}</div>
+          <div className="fs-3">Total Cost:</div>
+          <div className="fs-3">{currencyFormatter.format(totalCost)}</div>
         </Card.Footer>
       </Card>
     </>
